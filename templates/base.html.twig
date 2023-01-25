@@ -15,9 +15,13 @@
     {% block header %}
         {% include('partials/_header.html.twig') %}
     {% endblock %}
+
     <main class="{% block main_class %}{% endblock %}">
-        {% block main %}{% endblock %}
+        {% block main %}
+            {% include('partials/_free_card.html.twig') %}
+        {% endblock %}
     </main>
+
     {% block footer %}
         {% include('partials/_footer.html.twig') %}
     {% endblock %}

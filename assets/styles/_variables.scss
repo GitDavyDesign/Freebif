@@ -2,6 +2,9 @@ $main-font: 'poppinslight';
 
 :root {
     --main-font: 'poppinslight';
+    --reg-font: 'poppinsregular';
+    --bold-font: 'poppinsbold';
+
     --main-color: #E6CDAA;
     --main-color-dark: #99805C;
     --main-color-white: #FFFFFF;
@@ -16,3 +19,7 @@ $main-font: 'poppinslight';
     --silver-color: #A5A5A5;
     --bronze-color: #B48152;
 }
+
+//barre de recherche
+$input-placeholder-color:               var(--#{$prefix}#ffffff);
+$input-plaintext-color:                 var(--#{$prefix}body-color);

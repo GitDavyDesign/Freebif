@@ -48,8 +48,8 @@ a {
 }
 
 .title {
+    font-family: var(--bold-font);
     font-size: 1.5rem;
-    font-weight: bold;
 }
 
 .text-gold {
@@ -80,7 +80,7 @@ a {
 }
 
 .form-label {
-    font-weight: bold;
+    font-family: var(--bold-font);
 }
 
 .form-check-input:checked {
@@ -121,4 +121,3 @@ a {
         }
     }
 }
-
