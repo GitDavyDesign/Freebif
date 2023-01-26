@@ -1,0 +1,61 @@
+.free-card {
+    background-color: var(--main-color-white);
+    //padding: 0.5rem 1rem 1.5rem 1rem;
+    display: block;
+    width: 225px;
+    height: 225px;
+    text-decoration: unset;
+    font-size: 0.8em;
+
+    .card {
+        height: 125px;
+    }
+
+    .tof {
+        //background-color: var(--main-color-black);
+        display: flex;
+        justify-content: center;
+    }
+
+    #photo {
+        max-height: 125px;
+    }
+
+    .photo {
+
+    }
+
+    .card-title {
+        font-size: 1rem;
+        margin-top: 0;
+    }
+
+    //.card-text {
+    //    font-size: 0.5rem;
+    //}
+
+    //.size-text {
+    //    font-size: 0.2rem;
+    //}
+
+    .bd-placeholder-img {
+        height: 125px;
+    }
+
+    .card-body {
+        padding-top: 0.5rem;
+    }
+
+    &.gold {
+        background-color: var(--gold-color);
+    }
+
+    &.silver {
+        background-color: var(--silver-color);
+        color: var(--main-color);
+    }
+
+    &.bronze {
+        background-color: var(--bronze-color);
+    }
+}
