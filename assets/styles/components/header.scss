@@ -11,6 +11,7 @@
 
     .logo {
         max-width: 150px;
+        padding-bottom: 10px;
     }
 
     .nav1 {
@@ -21,6 +22,20 @@
         color: var(--main-color-white);
         border-color: var(--main-color-white);
     }
+
+    .navBtn:hover {
+        background-color: var(--main-color);
+        color: var(--main-color-dark);
+    }
+
+    .nav-link {
+        color: var(--main-color-white);
+    }
+
+    .form-custom {
+        background-color: var(--main-color-white);
+    }
+
 
     //.inputSearch {
     //    $input-placeholder-color: var(--#{$prefix}body-color);

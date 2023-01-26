@@ -1,10 +1,12 @@
-<a href="#" class="sport-card box-shadow border-radius {{ card_classes | default('') }}">
-    <div class="card" style="width: 12rem;">
-        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+<a href="#" class="free-card box-shadow border-radius {{ card_classes | default('') }}">
+    <div class="card">
+        <div class="tof">
+            <img id="photo" class="photo" src="{{ asset('build/images/Davy_icon.png') }}">
+        </div>
         <div class="card-body">
-            <h5 class="card-title"><font style="vertical-align: inherit;">Jack Larnak</font></h5>
-            <p class="card-text"><font style="vertical-align: inherit;">Développeur web Fullstack spécialisé dans Symfony & React. N'hésitez pas à me contacter pour le moindre renseignement.</font></p>
-            <a href="#" class="btn btn-primary"><font style="vertical-align: inherit;">En savoir plus</font></a>
+            <h5 class="card-title"><div style="vertical-align: inherit;">FULLSTACK</div></h5>
+            <p class="card-text"><div style="vertical-align: inherit; size-text">Spécialisé dans Symfony & React. 10 ans d'expérience.</div></p>
+{#            <a href="#" class="btn btn-primary"><div style="vertical-align: inherit;">En savoir plus</div></a>#}
         </div>
     </div>
 </a>
