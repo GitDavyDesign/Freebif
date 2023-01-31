@@ -11,6 +11,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\CallbackTransformer;
 
 class RegistrationFormType extends AbstractType
 {
@@ -18,11 +20,20 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
+            ->add('roles', ChoiceType::class, [
+                'required' => true,
+                'multiple' => false,
+                'expanded' => false,
+                'choices'  => [
+                    'Clients' => 'CLIENTS',
+                    'Freelance' => 'FREELANCE',
+                ],
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Veuillez accepter les conditions d\'utilisations.',
                     ]),
                 ],
             ])
@@ -33,17 +44,29 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez écrire votre mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit posséder au moins {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
-            ])
-        ;
+            ]);
+
+  // Data transformer
+        $builder->get('roles')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($rolesArray) {
+                    // transform the array to a string
+                    return count($rolesArray)? $rolesArray[0]: null;
+                },
+                function ($rolesString) {
+                     // transform the string back to an array
+                    return [$rolesString];
+                }
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void
