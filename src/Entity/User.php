@@ -23,6 +23,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
+    #[ORM\Column]
+    private array $works = [];
+
+
     /**
      * @var string The hashed password
      */
@@ -74,6 +78,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getWorks(): array
+    {
+        $works = $this->works;
+        // guarantee every user at least has ROLE_WORK
+//        $works[] = 'ROLE_WORK';
+
+        return array_unique($works);
+    }
+
+    public function setWorks(array $works): self
+    {
+        $this->works = $works;
 
         return $this;
     }
