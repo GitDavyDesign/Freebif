@@ -1,0 +1,122 @@
+.card {
+    position: relative;
+    width: 160px;
+    height: 225px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(74,52,21,0.25);
+}
+
+.card .poster {
+    position: relative;
+    overflow: hidden;
+}
+
+.card .poster::before {
+    content: '';
+    position: absolute;
+    bottom: -90px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #4A3415 50%, transparent);
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.card:hover .poster::before {
+    bottom: 0;
+}
+
+.card .poster img {
+    width: 100%;
+    transition: 0.5s;
+}
+
+.card:hover .poster img {
+    transform: translateY(-50px);
+    filter: blur(5px);
+}
+
+.card .details {
+    position: absolute;
+    bottom: -220px;
+    left: 0;
+    padding: 10px;
+    width: 100%;
+    z-index: 2;
+    transition: 0.5s;
+}
+
+.card:hover .details{
+    bottom: 0;
+}
+
+.card .details h3 {
+    font-size: 0.8em;
+    color: #fff;
+}
+
+.card .details .rating {
+    position: relative;
+    padding: 1px 0;
+}
+
+.card .details .rating .bi-star {
+    color: #f7f406;
+    font-size: 0.5em;
+}
+
+.card .details .rating span {
+    color: #fff;
+}
+
+.card .details .tags {
+    position: relative;
+    margin-top: 5px;
+}
+
+.card .details .tags span {
+    padding: 2px 5px;
+    color: #fff;
+    background: #99805C;
+    border-radius: 4px;
+}
+
+.card .details .info {
+    color: #fff;
+    margin-top: 30px;
+    font-size: 0.8em;
+}
+
+.card .details .cast {
+    position: relative;
+}
+
+.card .details .cast h4 {
+    color: #fff;
+    margin-top: 20px;
+    font-size: 1em;
+}
+
+.card .details .cast ul {
+    position: relative;
+    display: flex;
+    margin-top: 10px;
+}
+
+.card .details .cast ul li {
+    list-style: none;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    background-color: #fff;
+    align-items: center;
+    justify-content: center;
+}
+
+.card .details .cast ul li img {
+    max-width: 100%;
+}

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Freelance{% endblock %}
+
+{% block body %}
+    <h1>Freelance</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ freelance.id }}</td>
+            </tr>
+            <tr>
+                <th>Categories</th>
+                <td>{{ freelance.categories ? freelance.categories|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Experience</th>
+                <td>{{ freelance.experience ? freelance.experience|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Skills</th>
+                <td>{{ freelance.skills ? freelance.skills|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Localisation</th>
+                <td>{{ freelance.localisation }}</td>
+            </tr>
+            <tr>
+                <th>ChoiceLocalisation</th>
+                <td>{{ freelance.choiceLocalisation ? freelance.choiceLocalisation|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>FreePhone</th>
+                <td>{{ freelance.freePhone }}</td>
+            </tr>
+            <tr>
+                <th>Presentation</th>
+                <td>{{ freelance.presentation }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ freelance.description }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ freelance.photo }}</td>
+            </tr>
+            <tr>
+                <th>Portfolio</th>
+                <td>{{ freelance.portfolio }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_freelance_index') }}">back to list</a>
+
+    <a href="{{ path('app_freelance_edit', {'id': freelance.id}) }}">edit</a>
+
+    {{ include('freelance/_delete_form.html.twig') }}
+{% endblock %}

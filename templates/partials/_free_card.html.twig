@@ -1,12 +1,33 @@
-<a href="#" class="free-card box-shadow border-radius {{ card_classes | default('') }}">
+<a href="#" {{ card_classes | default('') }}>
     <div class="card">
-        <div class="tof">
-            <img id="photo" class="photo" src="{{ asset('build/images/Davy_icon.png') }}">
+        <div class="poster">
+            <img src="{{ asset('build/images/card/Homme2.jpg') }}" alt="Moktar Dupont">
         </div>
-        <div class="card-body">
-            <h5 class="card-title"><div style="vertical-align: inherit;">FULLSTACK</div></h5>
-            <p class="card-text"><div style="vertical-align: inherit; size-text">Spécialisé dans Symfony & React. 10 ans d'expérience.</div></p>
-{#            <a href="#" class="btn btn-primary"><div style="vertical-align: inherit;">En savoir plus</div></a>#}
+
+        <div class="details">
+            <h3>Moktar Dupont</h3>
+            <div class="rating">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+                <i class="bi bi-star"></i>
+            </div>
+            <div class="tags">
+                <span>Dév. web</span>
+            </div>
+            <div class="info">
+                <p>Passionné du code depuis 20 ans, je réaliserai tous vos sites quelles que soient les conditions. Pitié !</p>
+            </div>
+            <div class="cast">
+                <h4>Connaissances</h4>
+                <ul>
+                    <li><img src="{{ asset('build/images/card/css-3NB.svg') }}" alt="CSS3"></li>
+                    <li><img src="{{ asset('build/images/card/php-logo-only-letter') }}" alt="PHP"></li>
+                    <li><img src="{{ asset('build/images/card/react-2NB.svg') }}" alt="REACT"></li>
+                    <li><img src="{{ asset('build/images/card/symfony.svg') }}" alt="Symfony"></li>
+                </ul>
+            </div>
         </div>
     </div>
 </a>
