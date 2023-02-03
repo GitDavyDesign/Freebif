@@ -25,14 +25,15 @@ class RegistrationFormType extends AbstractType
             ->add('lastname')
             ->add('email')
             ->add('roles', ChoiceType::class, [
-                'attr' => ['class' => 'roles'],
                 'required' => true,
                 'multiple' => false,
                 'expanded' => true,
                 'choices'  => [
-                    'Clients' => 'CLIENTS',
-                    'Freelance' => 'FREELANCE',
+                    'Clients' => 'ROLE_CLIENTS',
+                    'Freelance' => 'ROLE_FREELANCE',
                 ],
+                'choice_attr' => ['Clients' => ['class' => 'roles'],'Freelance' => ['class' => 'roles']]
+
             ])
             ->add('works', ChoiceType::class, [
                 'attr' => ['class' => 'works'],

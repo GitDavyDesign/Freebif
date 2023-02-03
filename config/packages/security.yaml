@@ -35,7 +35,7 @@ security:
     - { path: ^/admin/users, roles: ROLE_SUPER_ADMIN }
 
     # matches /admin/* except for anything matching the above rule
-    - { path: ^/freelance, roles: FREELANCE }
+    - { path: ^/freelance, roles: ROLE_FREELANCE }
 
 when@test:
     security:

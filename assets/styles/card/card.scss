@@ -48,7 +48,7 @@
 }
 
 .card:hover .details{
-    bottom: 0;
+    bottom: -10px;
 }
 
 .card .details h3 {
@@ -84,7 +84,7 @@
 
 .card .details .info {
     color: #fff;
-    margin-top: 30px;
+    margin-top: 25px;
     font-size: 0.8em;
 }
 
@@ -102,6 +102,7 @@
     position: relative;
     display: flex;
     margin-top: 10px;
+    padding-left: 0;
 }
 
 .card .details .cast ul li {
