@@ -3,13 +3,17 @@
 {% block title %}Freelance{% endblock %}
 
 {% block main %}
-    <h1>Freelance</h1>
+{#    <h1>Freelance</h1>#}
 
     <table class="table">
         <tbody>
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <td>{{ freelance.id }}</td>#}
+{#            </tr>#}
             <tr>
-                <th>Id</th>
-                <td>{{ freelance.id }}</td>
+{#                <th>Photo</th>#}
+                <td> <img src="{{ asset('uploads/photo_free/' ~ freelance.photo) }}" alt="Tof du free"></td>
             </tr>
             <tr>
                 <th>Categories</th>
@@ -32,31 +36,27 @@
                 <td>{{ freelance.choiceLocalisation ? freelance.choiceLocalisation|join(', ') : '' }}</td>
             </tr>
             <tr>
-                <th>FreePhone</th>
-                <td>{{ freelance.freePhone }}</td>
-            </tr>
-            <tr>
-                <th>Presentation</th>
-                <td>{{ freelance.presentation }}</td>
-            </tr>
+{#                <th>FreePhone</th>#}
+{#                <td>{{ freelance.freePhone }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Presentation</th>#}
+{#                <td>{{ freelance.presentation }}</td>#}
+{#            </tr>#}
             <tr>
                 <th>Description</th>
                 <td>{{ freelance.description }}</td>
             </tr>
             <tr>
-                <th>Photo</th>
-                <td>{{ freelance.photo }}</td>
-            </tr>
-            <tr>
                 <th>Portfolio</th>
-                <td>{{ freelance.portfolio }}</td>
+                <td> <img src="{{ asset('uploads/portfolio_free/' ~ freelance.portfolio) }}" alt="Portfolio du free"></td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_freelance_index') }}">back to list</a>
+{#    <a href="{{ path('app_freelance_index') }}">back to list</a>#}
 
-    <a href="{{ path('app_freelance_edit', {'id': freelance.id}) }}">edit</a>
+    <a href="{{ path('app_freelance_edit', {'id': freelance.id}) }}">éditer</a>
 
     {{ include('freelance/_delete_form.html.twig') }}
 {% endblock %}
