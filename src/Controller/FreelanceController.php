@@ -5,10 +5,15 @@ namespace App\Controller;
 use App\Entity\Freelance;
 use App\Form\FreelanceType;
 use App\Repository\FreelanceRepository;
+use JetBrains\PhpStorm\NoReturn;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 #[Route('/freelance')]
 class FreelanceController extends AbstractController
@@ -22,21 +27,68 @@ class FreelanceController extends AbstractController
     }
 
     #[Route('/new', name: 'app_freelance_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, FreelanceRepository $freelanceRepository): Response
+    public function new(Request $request, FreelanceRepository $freelanceRepository,SluggerInterface $slugger,EntityManagerInterface $entityManager): Response
     {
         $freelance = new Freelance();
         $form = $this->createForm(FreelanceType::class, $freelance);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $freelanceRepository->save($freelance, true);
+            $photoFile = $form->get('photo')->getData();
+            $portfolioFile = $form->get('portfolio')->getData();
+//            $freelanceRepository->save($freelance, true);
 
-            return $this->redirectToRoute('app_freelance_index', [], Response::HTTP_SEE_OTHER);
+            if ($photoFile) {
+            $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+            // this is needed to safely include the file name as part of the URL
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$photoFile->guessExtension();
+
+            // Move the file to the directory where brochures are stored
+            try {
+                $photoFile->move(
+                    $this->getParameter('photo_free'),
+                    $newFilename
+                );
+            } catch (FileException $e) {
+                dump('test1');
+            }
+
+            // updates the 'brochureFilename' property to store the JPG/PNG file name
+            // instead of its contents
+
+            $freelance->setPhoto($newFilename);
+            }
+
+            if ($portfolioFile) {
+                $originalFilename = pathinfo($portfolioFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$portfolioFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $portfolioFile->move(
+                        $this->getParameter('portfolio_free'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                   dump('test2');
+                }
+
+                // updates the 'brochureFilename' property to store the JPG file name
+                // instead of its contents
+                $freelance->setPortfolio($newFilename);
+            }
+            $entityManager->persist($freelance);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_freelance_index');
         }
 
-        return $this->renderForm('freelance/new.html.twig', [
+        return $this->render('freelance/new.html.twig', [
             'freelance' => $freelance,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -48,8 +100,24 @@ class FreelanceController extends AbstractController
         ]);
     }
 
+//    #[NoReturn]
+//    public function temporaryUploadAction(Request $request)
+//    {
+//        /** @var UploadedFile $uploadedFile */
+//        $uploadedFile = $request->files->get('image');
+//        $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+//
+//        $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+//        $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
+//
+//        dd($uploadedFile->move(
+//            $destination,
+//            $newFilename
+//        ));
+//    }
+
     #[Route('/{id}/edit', name: 'app_freelance_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Freelance $freelance, FreelanceRepository $freelanceRepository): Response
+    public function edit(Request $request, Freelance $freelance, FreelanceRepository $freelanceRepository,): Response
     {
         $form = $this->createForm(FreelanceType::class, $freelance);
         $form->handleRequest($request);

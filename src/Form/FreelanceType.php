@@ -5,8 +5,10 @@ namespace App\Form;
 use App\Entity\Freelance;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class FreelanceType extends AbstractType
 {
@@ -18,16 +20,16 @@ class FreelanceType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'choices'  => [
-                    'Développeur web back-end' => 'CATEGORIES',
-                    'Développeur web front-end' => 'CATEGORIES',
-                    'Développeur CMS' => 'CATEGORIES',
-                    'Intégrateur web' => 'CATEGORIES',
-                    'Web designer' => 'CATEGORIES',
-                    'Photographe' => 'CATEGORIES',
-                    'Monteur vidéo' => 'CATEGORIES',
-                    'Réalisateur' => 'CATEGORIES',
-                    'Caméraman' => 'CATEGORIES',
-                    'Preneur de son' => 'CATEGORIES',
+                    'Développeur web back-end' => 'Dev web BE',
+                    'Développeur web front-end' => 'Dev web FE',
+                    'Développeur CMS' => 'Dev CMS',
+                    'Intégrateur web' => 'Intégrateur',
+                    'Web designer' => 'Web design',
+                    'Photographe' => 'Photographe',
+                    'Monteur vidéo' => 'Monteur V',
+                    'Réalisateur' => 'Réal',
+                    'Caméraman' => 'Cam',
+                    'Preneur de son' => 'Preneur son',
                 ],
             ])
             ->add('experience', ChoiceType::class, [
@@ -35,9 +37,9 @@ class FreelanceType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
                 'choices'  => [
-                    '0 à 2 ans' => 'EXPERIENCE',
-                    '2 à 7 ans' => 'EXPERIENCE',
-                    '7 ans et +' => 'EXPERIENCE',
+                    '0 à 2 ans' => '0/2',
+                    '2 à 7 ans' => '2/7',
+                    '7 ans et +' => '7+',
                 ],
             ])
             ->add('skills', ChoiceType::class, [
@@ -45,12 +47,12 @@ class FreelanceType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'choices'  => [
-                    'HTML' => 'SKILLS',
-                    'CSS' => 'SKILLS',
-                    'JavaScript' => 'SKILLS',
-                    'React' => 'SKILLS',
-                    'Symfony' => 'SKILLS',
-                    'Angular' => 'SKILLS',
+                    'HTML' => 'HTML',
+                    'CSS' => 'CSS',
+                    'JavaScript' => 'JS',
+                    'React' => 'React',
+                    'Symfony' => 'Symfony',
+                    'Angular' => 'Angular',
                 ],
             ])
             ->add('localisation')
@@ -59,15 +61,44 @@ class FreelanceType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'choices'  => [
-                    'Chez les clients et à distance' => 'CHOICE_LOCALISATION',
-                    'À distance' => 'CHOICE_LOCALISATION',
+                    'Chez les clients et à distance' => 'Clients/distance',
+                    'À distance' => 'Distance',
                 ],
             ])
             ->add('freePhone')
             ->add('presentation')
             ->add('description')
-            ->add('photo')
-            ->add('portfolio')
+            ->add('photo', FileType::class, [
+                'label' => 'Photo (JPG/PNG file)',
+                'mapped' => false,
+                'required' => false,
+
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez télécharger un fichier JPG ou PNG valide',
+                    ])
+                ],
+            ])
+            ->add('portfolio', FileType::class, [
+                'label' => 'Photo (JPG file)',
+                'mapped' => false,
+                'required' => false,
+
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez télécharger un fichier JPG valide',
+                    ])
+                ],
+            ])
         ;
     }
 

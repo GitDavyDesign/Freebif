@@ -17,8 +17,8 @@ class Freelance
     #[ORM\Column(type: Types::ARRAY)]
     private array $categories = [];
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $experience = [];
+    #[ORM\Column(length: 255)]
+    private string $experience = '';
 
     #[ORM\Column(type: Types::ARRAY)]
     private array $skills = [];
@@ -26,8 +26,8 @@ class Freelance
     #[ORM\Column(length: 255)]
     private ?string $localisation = null;
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $choiceLocalisation = [];
+    #[ORM\Column(length: 255)]
+    private string $choiceLocalisation = '';
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $freePhone = null;
@@ -61,12 +61,12 @@ class Freelance
         return $this;
     }
 
-    public function getExperience(): array
+    public function getExperience(): string
     {
         return $this->experience;
     }
 
-    public function setExperience(array $experience): self
+    public function setExperience(string $experience): self
     {
         $this->experience = $experience;
 
@@ -97,12 +97,12 @@ class Freelance
         return $this;
     }
 
-    public function getChoiceLocalisation(): array
+    public function getChoiceLocalisation(): string
     {
         return $this->choiceLocalisation;
     }
 
-    public function setChoiceLocalisation(array $choiceLocalisation): self
+    public function setChoiceLocalisation(string $choiceLocalisation): self
     {
         $this->choiceLocalisation = $choiceLocalisation;
 
@@ -150,7 +150,7 @@ class Freelance
         return $this->photo;
     }
 
-    public function setPhoto(string $photo): self
+    public function setPhoto(?string $photo)
     {
         $this->photo = $photo;
 
@@ -162,10 +162,17 @@ class Freelance
         return $this->portfolio;
     }
 
-    public function setPortfolio(?string $portfolio): self
+    public function setPortfolio(?string $portfolio)
     {
         $this->portfolio = $portfolio;
 
         return $this;
     }
+
+//    public function setImageFilename(string $newFilename, $photo): Freelance
+//    {
+//        $this->photo = $photo;
+//
+//        return $this;
+//    }
 }
