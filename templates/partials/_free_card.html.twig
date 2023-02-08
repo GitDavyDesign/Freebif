@@ -1,11 +1,13 @@
 <a href="#" {{ card_classes | default('') }}>
     <div class="card">
         <div class="poster">
-            <img src="{{ asset('build/images/card/Homme2.jpg') }}" alt="Moktar Dupont">
+{#            {{ dump(freelance.photo) }}#}
+            <img src="{{ asset('uploads/photo_free/' ~ freelance.photo) }}" alt="{{ freelance.user.firstname }} {{ freelance.user.lastname }}">
         </div>
 
         <div class="details">
-            <h3>Moktar Dupont</h3>
+            <h3>{{ freelance.user.firstname }} {{ freelance.user.lastname }}</h3>
+
 {#            <div class="rating">#}
 {#                <i class="bi bi-star-fill"></i>#}
 {#                <i class="bi bi-star-fill"></i>#}
@@ -13,11 +15,14 @@
 {#                <i class="bi bi-star-half"></i>#}
 {#                <i class="bi bi-star"></i>#}
 {#            </div>#}
+
             <div class="tags">
-                <span>Dév. web</span>
+                {% for work in freelance.user.works %}
+                <span> {{ work }} </span>
+                {% endfor %}
             </div>
             <div class="info">
-                <p>Passionné de code depuis 20 ans, je réaliserai tous vos sites quelles que soient les conditions. Pitié !</p>
+                <p> {{ freelance.presentation }} </p>
             </div>
             <div class="cast">
                 <h4>Connaissances</h4>

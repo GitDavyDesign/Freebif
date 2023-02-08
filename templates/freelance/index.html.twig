@@ -5,49 +5,54 @@
 {% block main %}
     <h1>Freelance index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Categories</th>
-                <th>Experience</th>
-                <th>Skills</th>
-                <th>Localisation</th>
-                <th>ChoiceLocalisation</th>
-                <th>FreePhone</th>
-                <th>Presentation</th>
-                <th>Description</th>
-                <th>Photo</th>
-                <th>Portfolio</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+{#    <table class="table">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <th>Categories</th>#}
+{#                <th>Experience</th>#}
+{#                <th>Skills</th>#}
+{#                <th>Localisation</th>#}
+{#                <th>ChoiceLocalisation</th>#}
+{#                <th>FreePhone</th>#}
+{#                <th>Presentation</th>#}
+{#                <th>Description</th>#}
+{#                <th>Photo</th>#}
+{#                <th>Portfolio</th>#}
+{#                <th>actions</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
         {% for freelance in freelances %}
-            <tr>
-                <td>{{ freelance.id }}</td>
-                <td>{{ freelance.categories ? freelance.categories|join(', ') : '' }}</td>
-                <td>{{ freelance.experience ? freelance.experience|join(', ') : '' }}</td>
-                <td>{{ freelance.skills ? freelance.skills|join(', ') : '' }}</td>
-                <td>{{ freelance.localisation }}</td>
-                <td>{{ freelance.choiceLocalisation ? freelance.choiceLocalisation|join(', ') : '' }}</td>
-                <td>{{ freelance.freePhone }}</td>
-                <td>{{ freelance.presentation }}</td>
-                <td>{{ freelance.description }}</td>
-                <td>{{ freelance.photo }}</td>
-                <td>{{ freelance.portfolio }}</td>
-                <td>
-                    <a href="{{ path('app_freelance_show', {'id': freelance.id}) }}">show</a>
-                    <a href="{{ path('app_freelance_edit', {'id': freelance.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="12">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            {% include('partials/_free_card.html.twig') %}
 
-    <a href="{{ path('app_freelance_new') }}">Create new</a>
+        {% endfor %}
+
+{#            {{ dump(freelance.user.firstname) }}#}
+{#            <tr>#}
+{#                <td>{{ freelance.id }}</td>#}
+{#                <td>{{ freelance.categories ? freelance.categories|join(', ') : '' }}</td>#}
+{#                <td>{{ freelance.experience ? freelance.experience|join(', ') : '' }}</td>#}
+{#                <td>{{ freelance.skills ? freelance.skills|join(', ') : '' }}</td>#}
+{#                <td>{{ freelance.localisation }}</td>#}
+{#                <td>{{ freelance.choiceLocalisation ? freelance.choiceLocalisation|join(', ') : '' }}</td>#}
+{#                <td>{{ freelance.freePhone }}</td>#}
+{#                <td>{{ freelance.presentation }}</td>#}
+{#                <td>{{ freelance.description }}</td>#}
+{#                <td>{{ freelance.photo }}</td>#}
+{#                <td>{{ freelance.portfolio }}</td>#}
+{#                <td>#}
+{#                    <a href="{{ path('app_freelance_show', {'id': freelance.id}) }}">show</a>#}
+{#                    <a href="{{ path('app_freelance_edit', {'id': freelance.id}) }}">edit</a>#}
+{#                </td>#}
+{#            </tr>#}
+{#        {% else %}#}
+{#            <tr>#}
+{#                <td colspan="12">no records found</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+
+{#    <a href="{{ path('app_freelance_new') }}">Create new</a>#}
 {% endblock %}

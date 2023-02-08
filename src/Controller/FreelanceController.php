@@ -27,7 +27,7 @@ class FreelanceController extends AbstractController
     }
 
     #[Route('/new', name: 'app_freelance_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, FreelanceRepository $freelanceRepository,SluggerInterface $slugger,EntityManagerInterface $entityManager): Response
+    public function new(Request $request, FreelanceRepository $freelanceRepository, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
         $freelance = new Freelance();
         $form = $this->createForm(FreelanceType::class, $freelance);
@@ -36,7 +36,7 @@ class FreelanceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $photoFile = $form->get('photo')->getData();
             $portfolioFile = $form->get('portfolio')->getData();
-//            $freelanceRepository->save($freelance, true);
+            // $freelanceRepository->save($freelance, true);
 
             if ($photoFile) {
             $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -51,7 +51,6 @@ class FreelanceController extends AbstractController
                     $newFilename
                 );
             } catch (FileException $e) {
-                dump('test1');
             }
 
             // updates the 'brochureFilename' property to store the JPG/PNG file name
@@ -73,7 +72,6 @@ class FreelanceController extends AbstractController
                         $newFilename
                     );
                 } catch (FileException $e) {
-                   dump('test2');
                 }
 
                 // updates the 'brochureFilename' property to store the JPG file name
@@ -117,20 +115,65 @@ class FreelanceController extends AbstractController
 //    }
 
     #[Route('/{id}/edit', name: 'app_freelance_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Freelance $freelance, FreelanceRepository $freelanceRepository,): Response
+    public function edit(Request $request, Freelance $freelance, FreelanceRepository $freelanceRepository, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(FreelanceType::class, $freelance);
-        $form->handleRequest($request);
+        $formedit = $this->createForm(FreelanceType::class, $freelance);
+        $formedit->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $freelanceRepository->save($freelance, true);
+        if ($formedit->isSubmitted() && $formedit->isValid()) {
+            $photoFile = $formedit->get('photo')->getData();
+            $portfolioFile = $formedit->get('portfolio')->getData();
+            // $freelanceRepository->save($freelance, true);
 
-            return $this->redirectToRoute('app_freelance_index', [], Response::HTTP_SEE_OTHER);
+            if ($photoFile) {
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$photoFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $photoFile->move(
+                        $this->getParameter('photo_free'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+
+                // updates the 'brochureFilename' property to store the JPG/PNG file name
+                // instead of its contents
+
+                $freelance->setPhoto($newFilename);
+            }
+
+            if ($portfolioFile) {
+                $originalFilename = pathinfo($portfolioFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$portfolioFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $portfolioFile->move(
+                        $this->getParameter('portfolio_free'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+
+                // updates the 'brochureFilename' property to store the JPG file name
+                // instead of its contents
+                $freelance->setPortfolio($newFilename);
+            }
+            $entityManager->persist($freelance);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_freelance_index');
         }
 
         return $this->renderForm('freelance/edit.html.twig', [
             'freelance' => $freelance,
-            'form' => $form,
+            'form' => $formedit,
         ]);
     }
 

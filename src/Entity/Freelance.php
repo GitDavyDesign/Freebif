@@ -44,6 +44,9 @@ class Freelance
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $portfolio = null;
 
+    #[ORM\OneToOne(mappedBy: 'freelance', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -150,7 +153,7 @@ class Freelance
         return $this->photo;
     }
 
-    public function setPhoto(?string $photo)
+    public function setPhoto(?string $photo): static
     {
         $this->photo = $photo;
 
@@ -162,7 +165,7 @@ class Freelance
         return $this->portfolio;
     }
 
-    public function setPortfolio(?string $portfolio)
+    public function setPortfolio(?string $portfolio): static
     {
         $this->portfolio = $portfolio;
 
@@ -175,4 +178,26 @@ class Freelance
 //
 //        return $this;
 //    }
+
+public function getUser(): ?User
+{
+    return $this->user;
+}
+
+public function setUser(?User $user): self
+{
+    // unset the owning side of the relation if necessary
+    if ($user === null && $this->user !== null) {
+        $this->user->setFreelance(null);
+    }
+
+    // set the owning side of the relation if necessary
+    if ($user !== null && $user->getFreelance() !== $this) {
+        $user->setFreelance($this);
+    }
+
+    $this->user = $user;
+
+    return $this;
+}
 }

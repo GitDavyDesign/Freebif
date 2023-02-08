@@ -43,6 +43,8 @@ class RegistrationController extends AbstractController
                 )
             );
 
+
+
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -56,11 +58,21 @@ class RegistrationController extends AbstractController
 //            );
             // do anything else you need here, like send an email
 
-            return $userAuthenticator->authenticateUser(
+            $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
                 $request
             );
+
+            $role = $form->get('roles')->getData();
+
+
+
+            if (in_array("ROLE_FREELANCE", $role)) {
+                return $this->redirectToRoute('app_freelance_new');
+            } else {
+                return $this->redirectToRoute('app_home');
+            }
         }
 
 

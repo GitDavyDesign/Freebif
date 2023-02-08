@@ -42,6 +42,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Freelance $freelance = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -160,6 +163,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getFreelance(): ?Freelance
+    {
+        return $this->freelance;
+    }
+
+    public function setFreelance(?Freelance $freelance): self
+    {
+        $this->freelance = $freelance;
 
         return $this;
     }

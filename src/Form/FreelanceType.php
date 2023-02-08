@@ -20,16 +20,16 @@ class FreelanceType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'choices'  => [
-                    'Développeur web back-end' => 'Dev web BE',
-                    'Développeur web front-end' => 'Dev web FE',
-                    'Développeur CMS' => 'Dev CMS',
-                    'Intégrateur web' => 'Intégrateur',
-                    'Web designer' => 'Web design',
+                    'Développeur web back-end' => 'Développeur web back-end',
+                    'Développeur web front-end' => 'Développeur web front-end',
+                    'Développeur CMS' => 'Développeur CMS',
+                    'Intégrateur web' => 'Intégrateur web',
+                    'Web designer' => 'Web designer',
                     'Photographe' => 'Photographe',
-                    'Monteur vidéo' => 'Monteur V',
-                    'Réalisateur' => 'Réal',
-                    'Caméraman' => 'Cam',
-                    'Preneur de son' => 'Preneur son',
+                    'Monteur vidéo' => 'Monteur vidéo',
+                    'Réalisateur' => 'Réalisateur',
+                    'Caméraman' => 'Caméraman',
+                    'Preneur de son' => 'Preneur de son',
                 ],
             ])
             ->add('experience', ChoiceType::class, [
@@ -37,9 +37,9 @@ class FreelanceType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
                 'choices'  => [
-                    '0 à 2 ans' => '0/2',
-                    '2 à 7 ans' => '2/7',
-                    '7 ans et +' => '7+',
+                    '0 à 2 ans' => '0 à 2 ans',
+                    '2 à 7 ans' => '2 à 7 ans',
+                    '7 ans et +' => '7 ans et +',
                 ],
             ])
             ->add('skills', ChoiceType::class, [
@@ -61,8 +61,8 @@ class FreelanceType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'choices'  => [
-                    'Chez les clients et à distance' => 'Clients/distance',
-                    'À distance' => 'Distance',
+                    'Chez les clients et à distance' => 'Chez les clients et à distance',
+                    'À distance' => 'À distance',
                 ],
             ])
             ->add('freePhone')
