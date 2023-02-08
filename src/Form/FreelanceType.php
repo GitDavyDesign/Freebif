@@ -49,10 +49,10 @@ class FreelanceType extends AbstractType
                 'choices'  => [
                     'HTML' => 'HTML',
                     'CSS' => 'CSS',
-                    'JavaScript' => 'JS',
+                    'JavaScript' => 'JavaScript',
                     'React' => 'React',
                     'Symfony' => 'Symfony',
-                    'Angular' => 'Angular',
+                    'PHP' => 'PHP',
                 ],
             ])
             ->add('localisation')

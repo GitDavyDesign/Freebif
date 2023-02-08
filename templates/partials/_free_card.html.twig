@@ -27,10 +27,21 @@
             <div class="cast">
                 <h4>Connaissances</h4>
                 <ul>
-                    <li><img src="{{ asset('build/images/card/css-3NB.svg') }}" alt="CSS3"></li>
-                    <li><img src="{{ asset('build/images/card/php-logo-only-letter.svg') }}" alt="PHP"></li>
-                    <li><img src="{{ asset('build/images/card/react-2NB.svg') }}" alt="REACT"></li>
-                    <li><img src="{{ asset('build/images/card/symfony.svg') }}" alt="Symfony"></li>
+                    {% for freeskill in freelance.skills|slice(0, 3) %}
+                        {% if freeskill == "CSS" %}
+                            <li><img src="{{ asset('build/images/card/css-3NB.svg') }}" alt="CSS3"></li>
+                        {% elseif freeskill == "HTML" %}
+                            <li><img src="{{ asset('build/images/card/HTML-NB.svg') }}" alt="HTML"></li>
+                        {% elseif freeskill == "JavaScript" %}
+                            <li><img src="{{ asset('build/images/card/JS.svg') }}" alt="JS"></li>
+                        {% elseif freeskill == "PHP" %}
+                            <li><img src="{{ asset('build/images/card/php-logo-only-letter.svg') }}" alt="PHP"></li>
+                        {% elseif freeskill == "React" %}
+                            <li><img src="{{ asset('build/images/card/react-2NB.svg') }}" alt="React"></li>
+                        {% elseif freeskill == "Symfony" %}
+                            <li><img src="{{ asset('build/images/card/symfony.svg') }}" alt="Symfony"></li>
+                        {% endif %}
+                    {% endfor %}
                 </ul>
             </div>
         </div>
