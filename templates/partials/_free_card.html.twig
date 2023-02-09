@@ -1,7 +1,6 @@
 <a href="#" {{ card_classes | default('') }}>
     <div class="card">
         <div class="poster">
-{#            {{ dump(freelance.photo) }}#}
             <img src="{{ asset('uploads/photo_free/' ~ freelance.photo) }}" alt="{{ freelance.user.firstname }} {{ freelance.user.lastname }}">
         </div>
 
@@ -27,7 +26,7 @@
             <div class="cast">
                 <h4>Connaissances</h4>
                 <ul>
-                    {% for freeskill in freelance.skills|slice(0, 3) %}
+                    {% for freeskill in freelance.skills|slice(0, 4) %}
                         {% if freeskill == "CSS" %}
                             <li><img src="{{ asset('build/images/card/css-3NB.svg') }}" alt="CSS3"></li>
                         {% elseif freeskill == "HTML" %}

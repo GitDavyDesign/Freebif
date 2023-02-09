@@ -3,55 +3,5 @@
 {% block title %}Accueil{% endblock %}
 
 {% block main %}
-    {% set colors = ['gold', 'silver', 'bronze'] %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 pb-3">
-                <h2 class="title m-0">Les 3 dernières équipes ajoutées :</h2>
-            </div>
-            {% for i in 0..2 %}
-                <div class="col-12 col-md-4 pb-3">
-                    {% include 'partials/_team_card.html.twig' with { 'card_classes': colors[loop.index0] } %}
-                </div>
-            {% endfor %}
-        </div>
-
-        <div class="row">
-            <div class="col-12 pb-3">
-                <h2 class="title m-0">Les 3 équipes avec le plus de membres :</h2>
-            </div>
-            {% for i in 0..2 %}
-                <div class="col-12 col-md-4 pb-3">
-                    {% include 'partials/_team_card.html.twig' with { 'card_classes': colors[loop.index0] } %}
-                </div>
-            {% endfor %}
-        </div>
-
-        <div class="row">
-            <div class="col-12 pb-3">
-                <h2 class="title m-0">Les 3 sports avec le plus d'équipes :</h2>
-            </div>
-            {% for i in 0..2 %}
-                <div class="col-12 col-md-4 pb-3">
-                    {% include 'partials/_sport_card.html.twig' with { 'card_classes': colors[loop.index0] } %}
-                </div>
-            {% endfor %}
-        </div>
-
-        <div class="row">
-            <div class="col-12 pb-3">
-                <h2 class="title m-0">Les 10 plus jeunes athlètes :</h2>
-            </div>
-            <ol class="col-12 col-md-4 pb-3 px-4">
-                {% set textColors = ['text-gold', 'text-silver', 'text-bronze'] %}
-                {% for i in 0..9 %}
-                    {% if loop.index0 < 3 %}
-                        <li class="{{ textColors[loop.index0] }}">Allan JARRY (1{{ i }} ans)</li>
-                    {% else %}
-                        <li>Allan JARRY (1{{ i }} ans)</li>
-                    {% endif %}
-                {% endfor %}
-            </ol>
-        </div>
-    </div>
+    {% include('freelance/index.html.twig') %}
 {% endblock %}

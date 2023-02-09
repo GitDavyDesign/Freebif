@@ -42,7 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
-    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Freelance $freelance = null;
 
     public function getId(): ?int
@@ -172,10 +172,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->freelance;
     }
 
-    public function setFreelance(?Freelance $freelance): self
+    public function setFreelance(Freelance $freelance): self
     {
+        // set the owning side of the relation if necessary
+        if ($freelance->getUser() !== $this) {
+            $freelance->setUser($this);
+        }
+
         $this->freelance = $freelance;
 
         return $this;
     }
+
 }

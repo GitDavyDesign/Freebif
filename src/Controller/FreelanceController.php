@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Freelance;
+
 use App\Form\FreelanceType;
 use App\Repository\FreelanceRepository;
 use JetBrains\PhpStorm\NoReturn;
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+
 
 #[Route('/freelance')]
 class FreelanceController extends AbstractController
@@ -29,11 +31,14 @@ class FreelanceController extends AbstractController
     #[Route('/new', name: 'app_freelance_new', methods: ['GET', 'POST'])]
     public function new(Request $request, FreelanceRepository $freelanceRepository, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
+
         $freelance = new Freelance();
+
         $form = $this->createForm(FreelanceType::class, $freelance);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $freelance->setUser($this->getUser());
             $photoFile = $form->get('photo')->getData();
             $portfolioFile = $form->get('portfolio')->getData();
             // $freelanceRepository->save($freelance, true);
