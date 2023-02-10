@@ -1,3 +1,9 @@
+.display_card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .card {
     position: relative;
     width: 160px;
@@ -5,6 +11,7 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(74,52,21,0.25);
+    margin-bottom: 20px;
 }
 
 .card .poster {

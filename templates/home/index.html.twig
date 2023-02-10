@@ -3,5 +3,9 @@
 {% block title %}Accueil{% endblock %}
 
 {% block main %}
-    {% include('freelance/index.html.twig') %}
+    <div class="display_card">
+    {% for freelance in freelances %}
+        {% include('partials/_free_card.html.twig') %}
+    {% endfor %}
+    </div>
 {% endblock %}
