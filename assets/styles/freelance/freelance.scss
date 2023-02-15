@@ -1,0 +1,93 @@
+.free_section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: space-between;
+}
+
+.free_pic {
+}
+
+.free_picture {
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
+    /*margin-right: 5em;*/
+}
+
+.free_name {
+    background: linear-gradient(217deg, rgba(241,241,241,.8), rgba(241,241,241,0) 70.71%),
+    linear-gradient(127deg, rgba(230,205,170,.8), rgba(230,205,170,0) 70.71%);
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
+    padding: 2em;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.free_name_text {
+    font-family: var(--reg-font);
+    color: var(--main-color-black);
+}
+
+.free_text {
+    color: var(--main-color-darkgrey);
+    padding-top: 1em;
+    line-height: 2em;
+    font-size: 1.2em;
+}
+
+.free_infos {
+    background: linear-gradient(217deg, rgba(230,205,170,.8), rgba(230,205,170,0) 70.71%),
+    linear-gradient(127deg, rgba(241,241,241,.8), rgba(241,241,241,0) 70.71%);
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
+    color: var(--main-color-darkgrey);
+    padding: 2em;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.free_title_text {
+    font-family: var(--reg-font);
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+
+.free_infos_text {
+    padding-bottom: 1em;
+}
+
+.free_description {
+    background: linear-gradient(217deg, rgba(241,241,241,.8), rgba(241,241,241,0) 70.71%),
+    linear-gradient(127deg, rgba(230,205,170,.8), rgba(230,205,170,0) 70.71%);
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
+    color: var(--main-color-darkgrey);
+    padding: 2em;
+    border-radius: 10px;
+    align-items: center;
+    font-size: 1.5em;
+    text-align: center;
+    margin: 2em 0;
+}
+
+.free_but {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.portfolio_button {
+    display: block;
+    background-color: var(--main-color-dark);
+    width: 200px;
+    padding: 1em;
+    color: var(--main-color-white);
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
+    font-size: 1em;
+    /*align-items: center;*/
+    text-decoration: none;
+    text-align: center;
+}

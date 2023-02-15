@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Portfolio {{ freelance.user.firstname }} {{ freelance.user.lastname }}{% endblock %}
+
+{% block main %}
+
+          <div> <img src="{{ asset('uploads/portfolio_free/' ~ freelance.portfolio) }}" alt="Portfolio du free"></div>
+
+{% endblock %}

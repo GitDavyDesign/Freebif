@@ -1,64 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Freelance{% endblock %}
+{% block title %}{{ freelance.user.firstname }} {{ freelance.user.lastname }}{% endblock %}
 
 {% block main %}
-{#    <h1>Freelance</h1>#}
 
-    <table class="table">
-        <tbody>
-{#            <tr>#}
-{#                <th>Id</th>#}
-{#                <td>{{ freelance.id }}</td>#}
-{#            </tr>#}
-            <tr>
-{#                <th>Photo</th>#}
-                <td> <img src="{{ asset('uploads/photo_free/' ~ freelance.photo) }}" alt="Tof du free"></td>
-            </tr>
-            <tr>
-                <th>Categories</th>
-                <td>{{ freelance.categories ? freelance.categories|join(', ') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Experience</th>
-                <td>{{ freelance.experience ? freelance.experience|join(', ') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Skills</th>
-                <td>{{ freelance.skills ? freelance.skills|join(', ') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Localisation</th>
-                <td>{{ freelance.localisation }}</td>
-            </tr>
-            <tr>
-                <th>ChoiceLocalisation</th>
-                <td>{{ freelance.choiceLocalisation ? freelance.choiceLocalisation|join(', ') : '' }}</td>
-            </tr>
-            <tr>
-{#                <th>FreePhone</th>#}
-{#                <td>{{ freelance.freePhone }}</td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#                <th>Presentation</th>#}
-{#                <td>{{ freelance.presentation }}</td>#}
-{#            </tr>#}
-            <tr>
-                <th>Description</th>
-                <td>{{ freelance.description }}</td>
-            </tr>
-            <tr>
-                <th>Portfolio</th>
-                <td> <img src="{{ asset('uploads/portfolio_free/' ~ freelance.portfolio) }}" alt="Portfolio du free"></td>
-            </tr>
-        </tbody>
-    </table>
+    <section class="free_section">
+        <div class="free_pic">
+            <img class="free_picture" src="{{ asset('uploads/photo_free/' ~ freelance.photo) }}" alt="Tof du free">
+        </div>
 
-    <a href="{{ path('app_home') }}">Retour à la liste</a>
+        <div class="free_name">
+            <h1 class="free_name_text">{{ freelance.user.firstname }} {{ freelance.user.lastname }}</h1>
+            <div class="free_text">
+                {% if freelance.categories %}
+                    {% for category in freelance.categories %}
+                        {{ category }}
+                        <br>
+                    {% endfor %}
+                {% else %}
+                    Aucune catégorie trouvée.
+                {% endif %}
+            </div>
+        </div>
 
-    <a href="{{ path('app_discussing_index',{'id' : freelance.id}) }}">Contacter</a>
+        <div class="free_infos">
+            <div>
+                <h3 class="free_title_text">Skills</h3>
+                <div class="free_infos_text">{{ freelance.skills ? freelance.skills|join(', ') : '' }}</div>
+            </div>
 
-    {#    <a href="{{ path('app_freelance_edit', {'id': freelance.id}) }}">éditer</a>#}
+            <div>
+                <h3 class="free_title_text">Expérience</h3>
+                <div class="free_infos_text">{{ freelance.experience ? freelance.experience|join(', ') : '' }}</div>
+            </div>
 
-    {{ include('freelance/_delete_form.html.twig') }}
+            <div>
+                <h3 class="free_title_text">Localisation</h3>
+                <div class="free_infos_text">{{ freelance.localisation }}</div>
+            </div>
+
+            <div>
+                <h3 class="free_title_text">Je travaille</h3>
+                <div class="free_infos_text">{{ freelance.choiceLocalisation ? freelance.choiceLocalisation|join(', ') : '' }}</div>
+            </div>
+        </div>
+
+        <div class="free_description">{{ freelance.description }}</div>
+
+        <div class="free_but">
+            <a class="portfolio_button" href="{{ path('app_home') }}">Retour à la liste</a>
+
+            <a class="portfolio_button" href="{{ path('app_portfolio', {'id' : freelance.id}) }}">Portfolio</a>
+
+            <a class="portfolio_button" href="{{ path('app_discussing_index',{'id' : freelance.id}) }}">Contacter</a>
+        </div>
+
+    </section>
+
+{#    <a class="portfolio_button" href="{{ path('app_freelance_edit', {'id': freelance.id}) }}">éditer</a>#}
+{#    <div class="portfolio_button">{{ include('freelance/_delete_form.html.twig') }}</div>#}
+
+
+
+
 {% endblock %}

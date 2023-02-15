@@ -191,4 +191,13 @@ class FreelanceController extends AbstractController
 
         return $this->redirectToRoute('app_freelance_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/portfolio/{id}', name: 'app_portfolio', methods: ['GET'])]
+    public function portfolio(Freelance $freelance): Response
+    {
+
+        return $this->render('freelance/portfolio.html.twig', [
+            "freelance" => $freelance
+        ]);
+    }
 }
