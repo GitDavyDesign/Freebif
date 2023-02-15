@@ -33,7 +33,6 @@ class RegistrationFormType extends AbstractType
                     'Freelance' => 'ROLE_FREELANCE',
                 ],
                 'choice_attr' => ['Clients' => ['class' => 'roles'],'Freelance' => ['class' => 'roles']]
-
             ])
             ->add('works', ChoiceType::class, [
                 'attr' => ['class' => 'works'],

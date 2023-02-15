@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Discussing{% endblock %}
+
+{% block main %}
+    <h1>{{ discussing.subject }}</h1>
+{#    <p>{{ discussing.messages }}</p>#}
+    {% for message in discussing.messages.values %}
+        {% if app.user == message.message_author %}
+            <p>{{ message.date|date('d/m/Y H:i:s') }}</p>
+            <p>{{ message.mess }}</p>
+        {% else %}
+            <p>{{ message.date|date('d/m/Y H:i:s') }}</p>
+            <p>{{ message.mess }}</p>
+        {% endif %}
+    {% endfor %}
+    {{ include('message/new.html.twig') }}
+
+{#    <table class="table">#}
+{#        <tbody>#}
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <td>{{ discussing.id }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Subject</th>#}
+{#                <td>{{ discussing.subject }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Author</th>#}
+{#                <td>{{ discussing.author }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Recipient</th>#}
+{#                <td>{{ discussing.recipient }}</td>#}
+{#            </tr>#}
+{#        </tbody>#}
+{#    </table>#}
+
+{#    <a href="{{ path('app_discussing_index') }}">back to list</a>#}
+
+{#    <a href="{{ path('app_discussing_edit', {'id': discussing.id}) }}">edit</a>#}
+
+{#    {{ include('discussing/_delete_form.html.twig') }}#}
+{% endblock %}

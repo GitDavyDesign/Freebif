@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Discussing index{% endblock %}
+
+{% block body %}
+    <h1>Discussing index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Subject</th>
+                <th>Author</th>
+                <th>Recipient</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for discussing in discussings %}
+            <tr>
+                <td>{{ discussing.id }}</td>
+                <td>{{ discussing.subject }}</td>
+                <td>{{ discussing.author }}</td>
+                <td>{{ discussing.recipient }}</td>
+                <td>
+                    <a href="{{ path('app_discussing_show', {'id': discussing.id}) }}">Show Discussing</a>
+{#                    <a href="{{ path('app_discussing_edit', {'id': discussing.id}) }}">edit</a>#}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_discussing_new',{'id' : id}) }}">Create new</a>
+{% endblock %}

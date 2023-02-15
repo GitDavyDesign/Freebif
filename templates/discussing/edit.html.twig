@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Discussing{% endblock %}
+
+{% block body %}
+    <h1>Edit Discussing</h1>
+
+    {{ include('discussing/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_discussing_index') }}">back to list</a>
+
+    {{ include('discussing/_delete_form.html.twig') }}
+{% endblock %}

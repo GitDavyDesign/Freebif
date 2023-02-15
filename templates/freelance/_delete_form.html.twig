@@ -1,4 +1,4 @@
 <form method="post" action="{{ path('app_freelance_delete', {'id': freelance.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir effacer votre compte free ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ freelance.id) }}">
-    <button class="btn">Effacer</button>
+    <button class="btn">Effacer mon compte</button>
 </form>

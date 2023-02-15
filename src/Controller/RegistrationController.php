@@ -68,8 +68,6 @@ class RegistrationController extends AbstractController
 
             $role = $form->get('roles')->getData();
 
-
-
             if (in_array("ROLE_FREELANCE", $role)) {
                 return $this->redirectToRoute('app_freelance_new');
             } else {
