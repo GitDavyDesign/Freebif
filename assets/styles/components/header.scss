@@ -1,21 +1,16 @@
 .main-header {
+    background-color: var(--main-color-dark);
 
     .navbar {
         position: relative;
-        min-width: 100vh;
         display: flex;
         justify-content: center;
         align-items: start;
-        background-color: var(--main-color-dark);
     }
 
     .logo {
         max-width: 150px;
         padding-bottom: 10px;
-    }
-
-    .nav1 {
-        margin: 0 240px;
     }
 
     .navBtn {

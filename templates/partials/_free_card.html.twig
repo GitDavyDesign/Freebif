@@ -1,4 +1,4 @@
-<a href="{{ path('app_freelance_show', {'id': freelance.id}) }}">
+<a class="display_card" href="{{ path('app_freelance_show', {'id': freelance.id}) }}">
     <div class="card">
         <div class="poster">
             <img src="{{ asset('uploads/photo_free/' ~ freelance.photo) }}" alt="{{ freelance.user.firstname }} {{ freelance.user.lastname }}">

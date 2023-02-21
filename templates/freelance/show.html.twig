@@ -3,20 +3,22 @@
 {% block title %}{{ freelance.user.firstname }} {{ freelance.user.lastname }}{% endblock %}
 
 {% block main %}
-
     <section class="free_section">
-        <div class="free_pic">
+        <figure class="free_pic">
             <img class="free_picture" src="{{ asset('uploads/photo_free/' ~ freelance.photo) }}" alt="Tof du free">
-        </div>
+        </figure>
 
         <div class="free_name">
             <h1 class="free_name_text">{{ freelance.user.firstname }} {{ freelance.user.lastname }}</h1>
             <div class="free_text">
                 {% if freelance.categories %}
-                    {% for category in freelance.categories %}
-                        {{ category }}
-                        <br>
-                    {% endfor %}
+                    <ul>
+                        {% for category in freelance.categories %}
+                            <li>
+                                {{ category }}
+                            </li>
+                        {% endfor %}
+                    </ul>
                 {% else %}
                     Aucune catégorie trouvée.
                 {% endif %}
@@ -26,22 +28,22 @@
         <div class="free_infos">
             <div>
                 <h3 class="free_title_text">Skills</h3>
-                <div class="free_infos_text">{{ freelance.skills ? freelance.skills|join(', ') : '' }}</div>
+                <p class="free_infos_text">{{ freelance.skills ? freelance.skills|join(', ') : '' }}</p>
             </div>
 
             <div>
                 <h3 class="free_title_text">Expérience</h3>
-                <div class="free_infos_text">{{ freelance.experience ? freelance.experience|join(', ') : '' }}</div>
+                <p class="free_infos_text">{{ freelance.experience ? freelance.experience|join(', ') : '' }}</p>
             </div>
 
             <div>
                 <h3 class="free_title_text">Localisation</h3>
-                <div class="free_infos_text">{{ freelance.localisation }}</div>
+                <p class="free_infos_text">{{ freelance.localisation }}</p>
             </div>
 
             <div>
                 <h3 class="free_title_text">Je travaille</h3>
-                <div class="free_infos_text">{{ freelance.choiceLocalisation ? freelance.choiceLocalisation|join(', ') : '' }}</div>
+                <p class="free_infos_text">{{ freelance.choiceLocalisation ? freelance.choiceLocalisation|join(', ') : '' }}</p>
             </div>
         </div>
 
@@ -57,8 +59,8 @@
 
     </section>
 
-{#    <a class="portfolio_button" href="{{ path('app_freelance_edit', {'id': freelance.id}) }}">éditer</a>#}
-{#    <div class="portfolio_button">{{ include('freelance/_delete_form.html.twig') }}</div>#}
+    {#    <a class="portfolio_button" href="{{ path('app_freelance_edit', {'id': freelance.id}) }}">éditer</a> #}
+    {#    <div class="portfolio_button">{{ include('freelance/_delete_form.html.twig') }}</div> #}
 
 
 

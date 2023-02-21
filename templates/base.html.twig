@@ -17,8 +17,10 @@
     {% endblock %}
 
     <main class="{% block main_class %}{% endblock %}">
+        <div class="container">
         {% block main %}
         {% endblock %}
+        </div>
     </main>
 
     {% block footer %}
