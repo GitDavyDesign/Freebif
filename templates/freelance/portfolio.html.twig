@@ -4,6 +4,8 @@
 
 {% block main %}
 
-          <div> <img src="{{ asset('uploads/portfolio_free/' ~ freelance.portfolio) }}" alt="Portfolio du free"></div>
+          <ul class="gallery">
+              <li><img src="{{ asset('uploads/portfolio_free/' ~ freelance.portfolio) }}" alt="Portfolio du free"></li>
+          </ul>
 
 {% endblock %}

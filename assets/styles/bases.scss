@@ -30,6 +30,13 @@ main {
     margin-block: 1rem;
 }
 
+.container {
+    border: #0a58ca 1px solid;
+    max-width: 1200px;
+    padding-inline: 0rem;
+    //margin-inline: auto;
+}
+
 p, figure {
     margin: 0;
 }
@@ -124,9 +131,4 @@ a {
         }
     }
 }
-//
-//.container {
-//    max-width: 1200px;
-//    padding-inline: 1rem;
-//    margin-inline: auto;
-//}
+
