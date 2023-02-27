@@ -33,8 +33,27 @@ main {
 .container {
     border: #0a58ca 1px solid;
     max-width: 1200px;
-    padding-inline: 0rem;
+    padding-inline: 0;
     //margin-inline: auto;
+}
+
+.containerNav {
+    //border: #0a58ca 1px solid;
+    max-width: 1200px;
+    padding-inline: 0;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerLogin {
+    //border: #0a58ca 1px solid;
+    max-width: 1200px;
+    height: 80vh;
+    padding-inline: 0;
+    display : flex;
+    justify-content: center;
+    align-items: center;
 }
 
 p, figure {

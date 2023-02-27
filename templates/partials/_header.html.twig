@@ -1,58 +1,88 @@
 <header class="main-header box-shadow">
-    <div class="container">
+    <div class="containerNav">
 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid nav1">
-                <img id="logo" class="logo" src="{{ asset('build/images/logoFreeBif.svg') }}">
+{#        <nav class="navbar navbar-expand-lg bg-body-tertiary">#}
+{#            <div class="container-fluid nav1">#}
+{#                <img id="logo" class="logo" src="{{ asset('build/images/logoFreeBif.svg') }}">#}
 
-                {# Menu Burger #}
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+{#                #}{# Menu Burger #}
+{#                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"#}
+{#                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"#}
+{#                        aria-expanded="false" aria-label="Toggle navigation">#}
+{#                    <span class="navbar-toggler-icon"></span>#}
+{#                </button>#}
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-2 mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                Métiers
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item pt-2" href="#">Graphisme</a></li>
-                                <li><a class="dropdown-item pt-2" href="#">Développement web</a></li>
-                                <li><a class="dropdown-item pt-2" href="#">Photo</a></li>
-                                <li><a class="dropdown-item pt-2" href="#">Vidéo</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto">
-                        {% if app.user %}
-                            <li class="nav-item">
-                                <a class="nav-link text-end" href="{{ path('app_logout') }}">Déconnexion</a>
-                            </li>
-                        {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link text-end" href="{{ path('app_login') }}">Connexion</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-end" href="{{ path('app_register') }}">Inscription</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2 form-custom" type="search" placeholder="Recherche"
-                               aria-label="Search">
-                        <button class="btn btn-outline-success navBtn" type="submit">Go</button>
-                    </form>
-                </div>
-            </div>
+{#                <div class="collapse navbar-collapse" id="navbarSupportedContent">#}
+{#                    <ul class="navbar-nav ms-2 mb-2 mb-lg-0">#}
+{#                        <li class="nav-item dropdown">#}
+{#                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"#}
+{#                               aria-expanded="false">#}
+{#                                Métiers#}
+{#                            </a>#}
+{#                            <ul class="dropdown-menu">#}
+{#                                <li><a class="dropdown-item pt-2" href="#">Graphisme</a></li>#}
+{#                                <li><a class="dropdown-item pt-2" href="#">Développement web</a></li>#}
+{#                                <li><a class="dropdown-item pt-2" href="#">Photo</a></li>#}
+{#                                <li><a class="dropdown-item pt-2" href="#">Vidéo</a></li>#}
+{#                            </ul>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                    <ul class="navbar-nav ms-auto">#}
+{#                        {% if app.user %}#}
+{#                            <li class="nav-item">#}
+{#                                <a class="nav-link text-end" href="{{ path('app_logout') }}">Déconnexion</a>#}
+{#                            </li>#}
+{#                        {% else %}#}
+{#                            <li class="nav-item">#}
+{#                                <a class="nav-link text-end" href="{{ path('app_login') }}">Connexion</a>#}
+{#                            </li>#}
+{#                            <li class="nav-item">#}
+{#                                <a class="nav-link text-end" href="{{ path('app_register') }}">Inscription</a>#}
+{#                            </li>#}
+{#                        {% endif %}#}
+{#                    </ul>#}
+{#                    <form class="d-flex" role="search">#}
+{#                        <input class="form-control me-2 form-custom" type="search" placeholder="Recherche"#}
+{#                               aria-label="Search">#}
+{#                        <button class="btn btn-outline-success navBtn" type="submit">Go</button>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </nav>#}
+        <nav>
+            <ul class="navigation">
+                <li><a href="#">Graphisme</a></li>
+                <li><a href="#">Développement web</a></li>
+                <li><a href="#">Photo</a></li>
+                <li><a href="#">Vidéo</a></li>
+
+                {% if app.user %}
+                    <li>
+                        <a href="{{ path('app_logout') }}">Déconnexion</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path('app_login') }}">Connexion</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_register') }}">Inscription</a>
+                    </li>
+                {% endif %}
+
+                <span class="toggleMenu"></span>
+            </ul>
+
         </nav>
+
+
         <script>
             document.getElementById("logo").addEventListener('click', e => {
                 window.location.href = '{{ path('app_home') }}'
             })
+        </script>
+
+        <script>
+            import 'nav.js'
         </script>
     </div>
 

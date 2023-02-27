@@ -50,7 +50,12 @@
         <div class="free_description">{{ freelance.description }}</div>
 
         <div class="free_but">
-            <a class="portfolio_button" href="{{ path('app_home') }}">Retour à la liste</a>
+
+            <button class="glow-button">
+                <span>Button</span>
+            </button>
+
+            <button class="glow-button"><a href="{{ path('app_home') }}">Retour à la liste</a></button>
 
             <a class="portfolio_button" href="{{ path('app_portfolio', {'id' : freelance.id}) }}">Portfolio</a>
 
